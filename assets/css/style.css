@@ -1,0 +1,150 @@
+/* GERAL */
+*{
+  color: #333;
+  font-family: Helvetica, Arial,sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body{
+  height: 100vh;
+  background: url("./../img/bg-azul.jpg") no-repeat center;
+  background-size: cover;
+}
+button{
+  background-color: #FDFDFD;
+  border: 2px solid #102F5e;
+  color: #102F5E;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: .3rem .6rem;
+  transition: 0.4s;
+ 
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button:hover{
+  background-color: #102F5E;
+  color: #FFF;
+}
+button:hover > i{
+  color: #FFF;
+}
+button i{
+  color: #102F5E;
+  font-weight: bold;
+  pointer-events: none;
+}
+input,select{
+  padding: .25rem .5rem;
+}
+.hide{
+  display: none;
+}
+
+/* ToDo header */
+.todo-container{
+  background-color: #FDFDFD;
+  border-radius: 15px;
+  box-shadow: 
+    4px 4px 2px #00000060,
+    -4px -4px 2px #00000060
+  ;
+  max-width: 450px;
+  padding: 1.5rem;
+
+  
+  position: absolute; 
+    top: 50%; 
+    left: 50%;
+  
+  transform: translate(-50%, -50%);
+}
+.todo-container header{
+  border-bottom: 1px solid #CCC;
+  padding: 0 1rem 1rem;
+  text-align: center;
+}
+
+/* form-geral */
+#todo-form, #edit-form{
+  border-bottom: 1px solid #CCC;
+  padding: 1rem;
+}
+#todo-form p,
+#edit-form p{
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+.form-control{
+  display: flex;
+  flex-flow: row wrap;
+}
+.form-control input{
+  margin-right: 0.3rem;
+}
+#cancel-edit-btn{
+  margin-top: 1rem;
+}
+
+/* todo toolbar */
+#toolbar{
+  border-bottom: 1px solid #CCC;
+  display: flex;
+    flex-wrap: wrap;
+  padding: 1rem;
+}
+
+#toolbar h4{
+  margin-bottom: .5rem;
+}
+#search form{
+  display: flex;
+}
+#search{
+  border-right: 1px solid #DDD;
+  margin-right: 1rem;
+  padding-right: 1rem;
+
+  display: flex;
+    flex-direction: column;
+
+  width: 65%;
+}
+#search input{
+  margin-right: 0.3rem;
+  width: 100%;
+}
+#filter{
+  display: flex;
+    flex-direction: column;
+}
+#filter-select{
+  flex-grow: 1;
+}
+
+/* todo list */
+.todo{
+  border-bottom: 1px solid #ddd;
+  display: flex;
+    align-items: center;
+    justify-content: content;
+  padding: 1rem;
+  transition: .3s;
+}
+.todo h3{
+  flex: 1;
+  font-size: 0.9rem;
+}
+.todo button{
+  margin-left: 0.4rem;  
+}
+.done{
+  background-color: #395169;
+}
+.done h3{
+  color: #fff;
+  font-style: italic;
+  text-decoration: line-through;
+}
