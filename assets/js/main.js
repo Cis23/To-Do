@@ -5,38 +5,40 @@ const editForm = document.querySelector("#edit-form");
 const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 
-
 const saveTodo = (text) => {
-  const todo = document.createElement("div");
-  todo.classList.add("todo");
+  add_element(todoList,"div","todo") ;
+  const todos = Array.from(document.querySelectorAll(".todo"));
+  console.log(todos);
+  const todosReverse = todos.reverse();
+  const todo = todosReverse[0];
+  add_element(todo, "h3","", text);
+  add_element(todo, "button","",'<i class="fa-solid fa-check"></i>');
+  add_element(todo, "button","",'<i class="fa-solid fa-pen"></i>');
+  add_element(todo, "button","",'<i class="fa-solid fa-xmark"></i>');
 
-  const todoTitle = document.createElement("h3");
-  todoTitle.innerText = text;
-  todo.appendChild(todoTitle);
+  todoInput.value = "";
+}
 
-  const doneBtn = document.createElement("button");
-  doneBtn.classList.add("finish-todo");
-  doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
-  todo.appendChild(doneBtn);
-
-  const editBtn = document.createElement("button");
-  editBtn.classList.add("edit-todo");
-  editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
-  todo.appendChild(editBtn);
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("remove-todo");
-  deleteBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-  todo.appendChild(deleteBtn);
+function add_element(parentNode, tag, className = false,text = false){
+  let content;
+  if(text){
+    content = `
+      <${tag} class="${className}"> 
+        ${text}
+      </${tag}>
+    `;
+  }else{
+    content = `
+      <${tag} class=${className}> </${tag}>
+    `;
+  }
+  parentNode.innerHTML += content;
 }
 
 todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
   const inputValue = todoInput.value
-
   if(inputValue){
-    console.log("Salvou")
     saveTodo(inputValue);
   }
 }); 
