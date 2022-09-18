@@ -12,11 +12,11 @@ const saveTodo = (text) => {
   const todosReverse = todos.reverse();
   const todo = todosReverse[0];
   add_element(todo, "h3","", text);
-  add_element(todo, "button","",'<i class="fa-solid fa-check"></i>');
-  add_element(todo, "button","",'<i class="fa-solid fa-pen"></i>');
-  add_element(todo, "button","",'<i class="fa-solid fa-xmark"></i>');
-
+  add_element(todo, "button",'finish-todo','<i class="fa-solid fa-check"></i>');
+  add_element(todo, "button",'edit-todo','<i class="fa-solid fa-pen"></i>');
+  add_element(todo, "button",'remove-todo','<i class="fa-solid fa-xmark"></i>');
   todoInput.value = "";
+  todoInput.focus();
 }
 
 function add_element(parentNode, tag, className = false,text = false){
@@ -41,4 +41,17 @@ todoForm.addEventListener("submit", (e) => {
   if(inputValue){
     saveTodo(inputValue);
   }
-}); 
+});
+document.addEventListener("click",(e) => {
+  const targetElement = e.target;
+  const parantElement = targetElement.parentNode;
+
+  if(targetElement.classList.contains("finish-todo")){
+    parantElement.classList.toggle("done");
+  }
+  if(targetElement.classList.contains("remove-todo")){
+    if(confirm("Deseja realmente excluir esta tarefa?")){
+      parantElement.remove();
+    }
+  }
+});
