@@ -4,6 +4,9 @@ const todoList = document.querySelector("#todo-list");
 const editForm = document.querySelector("#edit-form");
 const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
+let oldInputValue;
+
+
 
 const saveTodo = (text) => {
   add_element(todoList,"div","todo") ;
@@ -19,6 +22,56 @@ const saveTodo = (text) => {
   todoInput.focus();
 }
 
+
+todoForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const inputValue = todoInput.value
+  if(inputValue){
+    saveTodo(inputValue);
+  }
+});
+
+document.addEventListener("click",(e) => {
+  const targetElement = e.target;
+  const parantEl = targetElement.parentNode;
+  let todoTitle;
+
+  if(parantEl && parantEl.querySelector("h3")){
+    todoTitle = parantEl.querySelector("h3").innerText;
+  }
+  
+  if(targetElement.classList.contains("finish-todo")){
+    parantEl.classList.toggle("done");
+  }
+  if(targetElement.classList.contains("remove-todo")){
+    if(confirm("Deseja realmente excluir esta tarefa?")){
+      parantEl.remove();
+    }
+  }
+  if(targetElement.classList.contains("edit-todo")){
+    toggleForms();
+
+    editInput.value = todoTitle;
+    oldInputValue = todoTitle;  
+  }
+});
+
+cancelEditBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  
+  toggleForms();
+},false);
+
+editForm.addEventListener("submit",(e) => {
+  e.preventDefault();
+
+  const editInputValue = editInput.value
+
+  if(editInputValue){
+    updateTodo(editInputValue);
+  }
+  toggleForms();
+},false);
 function add_element(parentNode, tag, className = false,text = false){
   let content;
   if(text){
@@ -34,24 +87,19 @@ function add_element(parentNode, tag, className = false,text = false){
   }
   parentNode.innerHTML += content;
 }
+function toggleForms(){
+  editForm.classList.toggle("hide");
+  todoForm.classList.toggle("hide");
+  todoList.classList.toggle("hide");
+}
 
-todoForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const inputValue = todoInput.value
-  if(inputValue){
-    saveTodo(inputValue);
-  }
-});
-document.addEventListener("click",(e) => {
-  const targetElement = e.target;
-  const parantElement = targetElement.parentNode;
+function updateTodo(text){
+  const todos = document.querySelectorAll(".todo")
 
-  if(targetElement.classList.contains("finish-todo")){
-    parantElement.classList.toggle("done");
-  }
-  if(targetElement.classList.contains("remove-todo")){
-    if(confirm("Deseja realmente excluir esta tarefa?")){
-      parantElement.remove();
+  todos.forEach(todo =>{
+    let todoTitle = todo.querySelector("h3");
+    if(todoTitle.innerText === oldInputValue){
+      todoTitle.innerText = text
     }
-  }
-});
+  });
+}
