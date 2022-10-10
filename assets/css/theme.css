@@ -1,0 +1,14 @@
+.dark *{
+  /* color: rgb(214, 214, 214); */
+}
+.dark{
+  background-image: none;
+  background-color: rgb(0, 0, 0);
+}
+.dark #btn{
+  background-color: rgba(128, 128, 128, 0.5);
+  color: white;
+}
+.dark .todo-container{
+  background-color: rgba(204, 204, 204, 0.603);
+}

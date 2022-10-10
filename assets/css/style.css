@@ -6,9 +6,12 @@
   padding: 0;
 }
 body{
-  height: 100vh;
-  background: url("./../img/bg-azul.jpg") no-repeat center;
+  /* background: url("./../img/bg-azul.jpg") no-repeat center; */
   background-size: cover;
+  height: 100vw;
+  overflow: hidden;
+  width: 100%;
+  transition: background .15s ease-out;
 }
 button{
   background-color: #FDFDFD;
@@ -44,13 +47,15 @@ input,select{
 
 /* ToDo header */
 .todo-container{
-  background-color: #FDFDFD;
+  background-color: #fdfdfd79;
   border-radius: 15px;
   box-shadow: 
-    4px 4px 2px #00000060,
-    -4px -4px 2px #00000060
+    2px 2px 8px #2c2c2c60,
+    -2px -2px 8px #2c2c2c60
   ;
   max-width: 450px;
+  max-height: 90vh;
+  overflow: auto;
   padding: 1.5rem;
 
   
@@ -59,6 +64,8 @@ input,select{
     left: 50%;
   
   transform: translate(-50%, -50%);
+  transition: background .15s ease-out;
+  z-index: 1000;
 }
 .todo-container header{
   border-bottom: 1px solid #CCC;
@@ -141,7 +148,7 @@ input,select{
   margin-left: 0.4rem;  
 }
 .done{
-  background-color: #DC3545;
+  background-color: #5e040dbe;
 }
 .done h3{
   color: #fff;
